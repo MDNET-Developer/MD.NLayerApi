@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NLayer.Data_Repository\NLayer.Data_Repository.csproj" />
+  </ItemGroup>
+
 </Project>
