@@ -1,8 +1,12 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NLayer.Core.Services;
 using NLayer.Core.UnitOfWork;
 using NLayer.Data_Repository;
 using NLayer.Data_Repository.Repositories;
 using NLayer.Data_Repository.UnitOfWork;
+using NLayer.Service.Mapping;
+using NLayer.Service.Services;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +21,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //Generic oldugu ucun typeof istifade olundu
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IService<>),typeof(Service<>));
+
+builder.Services.AddAutoMapper(opt =>{opt.AddProfiles(new List<Profile>(){ new MapperProfile()}); });
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
